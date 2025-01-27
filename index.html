@@ -66,12 +66,13 @@
         /* Butterfly Styling */
         .butterfly {
             position: fixed;
-            top: 50px;
-            left: 50px;
+            left: 50%; /* Center horizontally */
             width: 60px;
+            transform: translateX(-50%); /* Center align */
             z-index: 1000;
-            pointer-events: none; /* Allow interactions with the page underneath */
+            pointer-events: none;
             animation: flutter 2s infinite ease-in-out alternate;
+            transition: top 0.2s ease, left 0.2s ease; /* Smooth movement */
         }
 
         /* Profile Image Styling */
@@ -87,10 +88,10 @@
 
         @keyframes flutter {
             0% {
-                transform: translateY(-10px) rotate(-10deg);
+                transform: translate(-50%, -10px) rotate(-10deg);
             }
             100% {
-                transform: translateY(10px) rotate(10deg);
+                transform: translate(-50%, 10px) rotate(10deg);
             }
         }
 
@@ -185,14 +186,14 @@
         const butterfly = document.getElementById('butterfly');
 
         document.addEventListener('scroll', () => {
-            const scrollY = window.scrollY; // How far the user has scrolled vertically
-            const pageHeight = document.body.scrollHeight - window.innerHeight; // Total scrollable height
-    
-            // Calculate butterfly's vertical position as a percentage of the scroll
+            const scrollY = window.scrollY;
+            const pageHeight = document.body.scrollHeight - window.innerHeight;
+
+            // Calculate butterfly's vertical position based on scroll progress
             const position = (scrollY / pageHeight) * 100;
-    
-            // Set butterfly's position dynamically
-            butterfly.style.top = `${100 - position}%`; // Moves from bottom (100%) to top (0%)
+
+            // Update butterfly's position with a smooth transition
+            butterfly.style.top = `${100 - position}%`;
         });
 
         // Reveal sections on scroll
