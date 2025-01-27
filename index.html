@@ -185,11 +185,14 @@
         const butterfly = document.getElementById('butterfly');
 
         document.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const scrollX = window.scrollX;
-
-            // Move butterfly diagonally based on scroll
-            butterfly.style.transform = `translate(${scrollX * 0.5}px, ${scrollY * 0.5}px)`;
+            const scrollY = window.scrollY; // How far the user has scrolled vertically
+            const pageHeight = document.body.scrollHeight - window.innerHeight; // Total scrollable height
+    
+            // Calculate butterfly's vertical position as a percentage of the scroll
+            const position = (scrollY / pageHeight) * 100;
+    
+            // Set butterfly's position dynamically
+            butterfly.style.top = `${100 - position}%`; // Moves from bottom (100%) to top (0%)
         });
 
         // Reveal sections on scroll
