@@ -13,8 +13,8 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #fdfdfd;
-            color: #3d2c8d; /* Deep Purple */
+            background-color: #f8f9fa; /* Light pastel background */
+            color: #3d3d3d; /* Neutral text color */
             line-height: 1.8;
             padding: 20px;
         }
@@ -23,25 +23,38 @@
             margin-bottom: 30px;
         }
         header h1 {
-            color: #3d2c8d; /* Deep Purple */
+            color: #6c757d; /* Pastel gray */
             font-size: 2.5rem;
         }
         section {
-            background: #ffffff;
+            background: #e7eaf6; /* Pastel blue */
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid #000000; /* Black border */
             margin: 20px auto;
             max-width: 800px;
             padding: 20px;
-            border: 2px solid #f72585; /* Hot Pink */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        section:nth-child(odd) {
+            background: #fde2e4; /* Pastel pink */
+        }
+        section:nth-child(even) {
+            background: #d8e2dc; /* Pastel green */
+        }
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
         }
         section h2 {
-            color: #7209b7; /* Vibrant Purple */
+            color: #495057; /* Neutral dark gray */
             margin-bottom: 15px;
             font-size: 1.8rem;
         }
         section h3 {
-            color: #7209b7;
+            color: #495057;
             margin-bottom: 10px;
             font-size: 1.4rem;
         }
@@ -61,13 +74,13 @@
             height: auto;
             margin: 10px auto;
             border-radius: 50%;
-            border: 3px solid #3d2c8d; /* Deep Purple */
+            border: 3px solid #000000; /* Black border for contrast */
         }
         footer {
             text-align: center;
             margin-top: 30px;
             font-size: 0.9rem;
-            color: #7209b7;
+            color: #6c757d; /* Pastel gray */
         }
     </style>
 </head>
@@ -95,15 +108,6 @@
         <p><strong>Games:</strong> I enjoy a mix of games depending on my mood. For open-world exploration, I play <em>Genshin Impact</em>, where the stunning visuals and intricate storylines keep me engaged. When I’m looking for a quick challenge, I turn to puzzle games like <em>Minesweeper</em> that test my logical thinking skills.</p>
         <p><strong>Pictures:</strong> Visual content like digital art, memes, and photography inspire me. I often scroll through Instagram and Pinterest to admire the creativity of artists and photographers, and I save ideas that spark my own creativity.</p>
         <p><strong>Videos:</strong> My video preferences range from entertaining TV shows to educational tutorials. I love binge-watching shows like <em>Brooklyn Nine-Nine</em> for its humor and unique characters. For deeper insights, I explore documentaries like those on Rotten Tomatoes, and for hobbies, I watch painting tutorials to improve my skills.</p>
-
-        <h3>Content Generation</h3>
-        <p>
-            On the creation side, I engage in a variety of activities. Writing and coding are two key areas where I express myself and solve problems.
-        </p>
-        <p><strong>Email and Messaging:</strong> Tools like Gmail, Slack, WhatsApp, and Microsoft Teams allow me to stay connected with colleagues, classmates, and friends. Whether it’s quick updates or detailed conversations, I use these tools every day.</p>
-        <p><strong>Digital Writing:</strong> I use Google Docs and Medium for academic work and personal writing. These platforms help me organize my thoughts and share my ideas with a broader audience.</p>
-        <p><strong>Social Media Content:</strong> Platforms like Instagram and LinkedIn are where I share moments from my life and professional achievements. I enjoy crafting posts that highlight my journey and connect me with like-minded people.</p>
-        <p><strong>Programming:</strong> I create scripts and work on technical projects using Python, R, and GitHub. These tools help me develop innovative solutions and manage collaborative projects effectively.</p>
     </section>
     <section>
         <h2>Challenges with Media Tools</h2>
@@ -117,5 +121,24 @@
     <footer>
         © 2025 Swayam - Computers and New Media Class
     </footer>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
