@@ -37,8 +37,13 @@
             padding: 20px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             opacity: 0;
-            transform: translateY(100px) scale(0.95);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            visibility: hidden;
         }
         section:nth-child(odd) {
             background: #dee2ff; /* Pastel Purple */
@@ -48,13 +53,13 @@
         }
         section.show {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+            visibility: visible;
         }
         section h2 {
             color: #5e548e; /* Pastel Purple */
             margin-bottom: 15px;
             font-size: 1.8rem;
-            animation: slideInLeft 0.8s ease-in-out;
         }
         section h3 {
             color: #4a4a4a;
@@ -78,14 +83,12 @@
             margin: 20px auto;
             border-radius: 50%;
             border: 3px solid #000000; /* Black border for contrast */
-            animation: zoomIn 1.2s ease-in-out;
         }
         footer {
             text-align: center;
             margin-top: 30px;
             font-size: 0.9rem;
             color: #5e548e; /* Pastel Purple */
-            animation: fadeInUp 1s ease-in-out;
         }
         /* Animations */
         @keyframes fadeInDown {
@@ -98,43 +101,13 @@
                 transform: translateY(0);
             }
         }
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes slideInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes zoomIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
     </style>
 </head>
 <body>
     <header>
         <h1>Swayamprava Satpathy</h1>
     </header>
-    <section>
+    <section id="about">
         <h2>About Me</h2>
         <img src="image" alt="Photo of Swayam">
         <p>
@@ -144,7 +117,7 @@
             In this class, I aim to build a foundation for creating meaningful digital experiences that resonate with people.
         </p>
     </section>
-    <section>
+    <section id="media">
         <h2>Media I Use</h2>
         <h3>Content Consumption</h3>
         <p>
@@ -153,9 +126,8 @@
         <p><strong>Music:</strong> My go-to genre is K-pop. I love the vibrant performances and catchy melodies of groups like Twice, Blackpink, and EXO. Whether I’m working or relaxing, music is my constant companion, and I often discover new artists through Spotify and YouTube playlists.</p>
         <p><strong>Games:</strong> I enjoy a mix of games depending on my mood. For open-world exploration, I play <em>Genshin Impact</em>, where the stunning visuals and intricate storylines keep me engaged. When I’m looking for a quick challenge, I turn to puzzle games like <em>Minesweeper</em> that test my logical thinking skills.</p>
         <p><strong>Pictures:</strong> Visual content like digital art, memes, and photography inspire me. I often scroll through Instagram and Pinterest to admire the creativity of artists and photographers, and I save ideas that spark my own creativity.</p>
-        <p><strong>Videos:</strong> My video preferences range from entertaining TV shows to educational tutorials. I love binge-watching shows like <em>Brooklyn Nine-Nine</em> for its humor and unique characters. For deeper insights, I explore documentaries like those on Rotten Tomatoes, and for hobbies, I watch painting tutorials to improve my skills.</p>
     </section>
-    <section>
+    <section id="challenges">
         <h2>Challenges with Media Tools</h2>
         <p>
             While media tools empower creativity and connectivity, they come with their own set of challenges. For instance, mastering software like Photoshop or advanced video editing platforms requires a steep learning curve. I often find myself dedicating significant time to learning the nuances of these tools, but the results are rewarding.
@@ -170,20 +142,33 @@
 
     <script>
         const sections = document.querySelectorAll("section");
+        let currentSectionIndex = 0;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("show");
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
+        // Function to show only one section at a time
+        const showSection = (index) => {
+            sections.forEach((section, i) => {
+                if (i === index) {
+                    section.classList.add("show");
+                } else {
+                    section.classList.remove("show");
+                }
+            });
+        };
 
-        sections.forEach((section) => {
-            observer.observe(section);
+        // Show the first section initially
+        showSection(currentSectionIndex);
+
+        // Add scroll event listener
+        window.addEventListener("wheel", (event) => {
+            if (event.deltaY > 0) {
+                // Scrolling down
+                currentSectionIndex = (currentSectionIndex + 1) % sections.length;
+            } else {
+                // Scrolling up
+                currentSectionIndex =
+                    (currentSectionIndex - 1 + sections.length) % sections.length;
+            }
+            showSection(currentSectionIndex);
         });
     </script>
 </body>
