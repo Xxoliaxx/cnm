@@ -47,7 +47,26 @@
         }
     
         #media {
-            background: #BFD4DB; /* Pastel Blue */
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        gap: 20px; /* Space between the columns */
+        background: #BFD4DB; /* Pastel Blue */
+        border-radius: 15px;
+        border: 2px solid #000000;
+        padding: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+        #media > div {
+            background: #F3E4F5; /* Light Purple for individual boxes */
+            border-radius: 15px;
+            border: 2px solid #000000;
+            padding: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+    
+        #media h3 {
+            margin-top: 0;
         }
     
         #challenges {
@@ -138,7 +157,7 @@
     </section>
     
     <section id="media">
-        <h2>Media I Use</h2>
+        <div><h2>Media I Use</h2>
         <h3>Content Consumption</h3>
         <p>
             Media plays a huge role in my daily life. Here’s how I consume content across different platforms:
@@ -147,8 +166,8 @@
         <p><strong>Games:</strong> I enjoy a mix of games depending on my mood. For open-world exploration, I play <em>Genshin Impact</em>, where the stunning visuals and intricate storylines keep me engaged. When I’m looking for a quick challenge, I turn to puzzle games like <em>Minesweeper</em> that test my logical thinking skills.</p>
         <p><strong>Pictures:</strong> Visual content like digital art, memes, and photography inspire me. I often scroll through Instagram and Pinterest to admire the creativity of artists and photographers, and I save ideas that spark my own creativity.</p>
         <p><strong>Videos:</strong> My video preferences range from entertaining TV shows to educational tutorials. I love binge-watching shows like <em>Brooklyn Nine-Nine</em> for its humor and unique characters. For deeper insights, I explore documentaries like those on Rotten Tomatoes, and for hobbies, I watch painting tutorials to improve my skills.</p>
-    
-        <h3>Content Generation</h3>
+        </div>
+        <div><h3>Content Generation</h3>
         <p>
             Generating content is just as important to me as consuming it. I engage in creating written, visual, and technical content regularly:
         </p>
@@ -169,6 +188,7 @@
         <p><strong>Creative Content:</strong> Occasionally, I experiment with graphic design and video editing.  
             - Canva is my go-to for creating posters, presentations, and visual content.  
             - For video editing, I use **DaVinci Resolve** to fine-tune and polish content for presentations or social media.</p>
+        </div>
     </section>
 
     <section id="challenges">
