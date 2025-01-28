@@ -41,9 +41,31 @@
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
         
-        /* Unique Background Colors */
-        #about {
-            background: #BFD4DB;
+        /#about {
+        display: flex;
+        align-items: center; /* Vertically center-align the content */
+        background: #D8BEE5; /* Medium Purple */
+        border-radius: 15px;
+        border: 2px solid #000000; /* Black border */
+        padding: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        gap: 20px; /* Space between the image and text */
+        }
+    
+        #about img {
+            max-width: 200px; /* Restrict image width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 15px; /* Optional: Slightly rounded corners */
+            border: 3px solid #fde2e4; /* Pastel pink border for the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+        }
+    
+        #about p {
+            margin: 0;
+        }
+    
+        #about h2 {
+            margin-top: 0;
         }
     
         #media {
@@ -146,14 +168,16 @@
     </header>
     
     <section id="about">
-        <h2>About Me</h2>
+        
         <img src="image" alt="Photo of Swayam">
+        <div>
+        <h2>About Me</h2>
         <p>
             Hi! My name is Swayamprava Satpathy, and I’m currently a student exploring the exciting intersection of technology and media. 
             My interest lies in understanding how digital tools shape modern storytelling, creativity, and communication. 
             I enjoy experiencing how different types of media influence our society and enable people to connect across boundaries. 
             In this class, I aim to build a foundation for creating meaningful digital experiences that resonate with people.
-        </p>
+        </p></div>
     </section>
     
     <section id="media">
